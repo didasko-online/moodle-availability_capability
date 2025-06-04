@@ -1,0 +1,12 @@
+.availability_capability .availability_capability_tag_box {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    min-height: 38px;
+}

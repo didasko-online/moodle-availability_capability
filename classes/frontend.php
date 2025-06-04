@@ -35,7 +35,9 @@ class frontend extends \core_availability\frontend {
      */
     protected function get_javascript_strings() {
         return [
+            'choose',
             'description',
+            'error_nocaps',
             'title',
         ];
     }
@@ -51,6 +53,6 @@ class frontend extends \core_availability\frontend {
     protected function get_javascript_init_params($course, \cm_info $cm = null, \section_info $section = null) {
         // This should be cached so not too onerous.
         $capabilities = get_all_capabilities();
-        return array_keys($capabilities);
+        return [array_keys($capabilities)]; // For whatever stupid reason, it actually only fetches the first element of this array.
     }
 }
