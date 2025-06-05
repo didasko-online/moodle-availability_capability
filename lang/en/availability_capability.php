@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['capabilities_incorrect'] = 'The user must not have the following capabilities: {$a}';
+$string['capabilities_required'] = 'The user requires the following capabilities: {$a}';
 $string['choose'] = 'Search for a capability...';
 $string['description'] = 'Restrict access based on user capabilities';
 $string['error_nocaps'] = 'You must select at least one capability';
