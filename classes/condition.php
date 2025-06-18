@@ -25,9 +25,29 @@
 
 namespace availability_capability;
 
+use coding_exception;
 use core_availability\info;
 
 class condition extends \core_availability\condition {
+
+    private array $capabilities;
+
+    private \stdClass $structure;
+
+    /**
+     * Constructor.
+     *
+     * @param \stdClass $structure Data from JSON object.
+     * @throws coding_exception
+     */
+    public function __construct(\stdClass $structure) {
+        $this->structure = $structure;
+        if (isset($structure->capabilities)) {
+            $this->capabilities = $structure->capabilities;
+        } else {
+            throw new coding_exception("No capabilities defined for capability condition");
+        }
+    }
 
     /**
      *  Determines whether a particular item is currently available
@@ -42,7 +62,18 @@ class condition extends \core_availability\condition {
      * @return bool True if available.
      */
     public function is_available($not, info $info, $grabthelot, $userid) {
-        // TODO: Implement is_available() method.
+        // Allow inverting the condition.
+        if ($not) {
+            $available = false;
+        } else {
+            $available = true;
+        }
+        foreach ($this->capabilities as $capability) {
+            if (!has_capability($capability, $info->get_context(), $userid)) {
+                return !$available;
+            }
+        }
+        return $available;
     }
 
     /**
@@ -58,7 +89,11 @@ class condition extends \core_availability\condition {
      *   this item.
      */
     public function get_description($full, $not, info $info) {
-        // TODO: Implement get_description() method.
+        $capabilitieslist = implode(', ', $this->capabilities); // There is always at least one.
+        if ($not) {
+            return get_string('capabilities_incorrect', 'availability_capability', $capabilitieslist);
+        }
+        return get_string('capabilities_required', 'availability_capability', $capabilitieslist);
     }
 
     /**
@@ -68,7 +103,7 @@ class condition extends \core_availability\condition {
      * @return string Text representation of parameters
      */
     protected function get_debug_string() {
-        // TODO: Implement get_debug_string() method.
+        return 'capabilities: ' . implode(', ', $this->capabilities);
     }
 
     /**
@@ -77,6 +112,6 @@ class condition extends \core_availability\condition {
      * @return \stdClass Structure object (ready to be made into JSON format)
      */
     public function save() {
-        // TODO: Implement save() method.
+        return $this->structure; // No need to alter the data;
     }
 }

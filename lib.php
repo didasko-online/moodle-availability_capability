@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Language strings.
+ * Main function library for plugin.
  *
  * @package    availability_capability
  * @author     Andrew Madden <andrewmadden@didasko-online.com>
@@ -25,11 +25,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['capabilities_incorrect'] = 'The user must not have the following capabilities: {$a}';
-$string['capabilities_required'] = 'The user requires the following capabilities: {$a}';
-$string['choose'] = 'Search for a capability...';
-$string['description'] = 'Restrict access based on user capabilities';
-$string['error_nocaps'] = 'You must select at least one capability';
-$string['pluginname'] = 'Restriction by capability';
-$string['privacy:metadata'] = 'The Restriction by capability plugin does not store any personal data.';
-$string['title'] = 'Capability';
+/**
+ * Code to run before page loads.
+ *
+ * @return void
+ * @throws coding_exception
+ */
+function availability_capability_before_http_headers() {
+    global $PAGE;
+
+    $PAGE->requires->css('/availability/condition/capability/styles.css');
+}
