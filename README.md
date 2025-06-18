@@ -58,6 +58,4 @@ Copyright © Didasko Online
 
 ## 🖼 Support
 
-![Didasko Icon](https://raw.githubusercontent.com/didasko-online/moodle-availability_capability/main/pix/didasko-online-icon.png)
-
-Part of the [Didasko Online](https://didasko-online.com) suite of Moodle enhancements — **Education Forward**.
+Part of the <img src="https://raw.githubusercontent.com/didasko-online/moodle-availability_capability/main/pix/didasko-online-icon.png"  alt="Didasko Online icon" style="width:0.6rem;"/> [Didasko Online](https://didasko-online.com) suite of Moodle enhancements - **Education Forward**.
